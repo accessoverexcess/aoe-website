@@ -1,0 +1,324 @@
+const featuredItems = [
+  {
+    name: "AOE Heavyweight Hoodie",
+    category: "New Arrival",
+    image: "/hoodie.png",
+  },
+  {
+    name: "AOE Short Set",
+    category: "New Arrival",
+    image: "/shortset.png",
+  },
+  {
+    name: "The Key",
+    category: "Brand Signature",
+    image: "/key-logo.jpg",
+  },
+];
+
+const networkRoles = [
+  {
+    number: "01",
+    title: "Community",
+    description:
+      "Those who wear the philosophy and understand that meaningful access begins with how you move.",
+  },
+  {
+    number: "02",
+    title: "Keyholders",
+    description:
+      "Individuals recognized for trust, character, contribution, and genuine relationships.",
+  },
+  {
+    number: "03",
+    title: "Curators",
+    description:
+      "Trusted connectors who create thoughtful experiences and meaningful introductions.",
+  },
+  {
+    number: "04",
+    title: "Founders Club",
+    description:
+      "The original believers who helped shape Access Over Excess before the world understood it.",
+  },
+];
+
+export default function Home() {
+  return (
+    <main className="bg-[#f2f0eb] text-[#111111]">
+      {/* Header */}
+      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/20 bg-black/80 text-white backdrop-blur-md">
+        <div className="grid h-16 grid-cols-3 items-center px-5 sm:px-8">
+          <nav className="hidden items-center gap-6 text-[10px] uppercase tracking-[0.24em] md:flex">
+            <a href="#collection" className="transition hover:opacity-60">
+              Collection
+            </a>
+            <a href="#philosophy" className="transition hover:opacity-60">
+              Philosophy
+            </a>
+          </nav>
+
+          <a
+            href="#top"
+            className="col-start-2 text-center text-sm font-semibold uppercase tracking-[0.45em]"
+          >
+            AOE
+          </a>
+
+          <nav className="flex items-center justify-end gap-5 text-[10px] uppercase tracking-[0.24em]">
+            <a href="#network" className="hidden transition hover:opacity-60 sm:block">
+              Network
+            </a>
+            <a href="#contact" className="transition hover:opacity-60">
+              Enter
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section
+        id="top"
+        className="relative min-h-screen overflow-hidden bg-[#1a1714]"
+      >
+        <img
+          src="/hero.png"
+          alt="Access Over Excess campaign"
+          className="absolute inset-0 h-full w-full object-cover object-center md:object-[center_35%]"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/25" />
+
+        <div className="relative z-10 flex min-h-screen items-end justify-center px-6 pb-14 pt-24 text-center text-white sm:pb-20">
+          <div className="max-w-5xl">
+            <p className="mb-5 text-[10px] uppercase tracking-[0.5em] text-white/80">
+              The First Collection
+            </p>
+
+            <h1 className="text-5xl font-medium uppercase leading-[0.9] tracking-[-0.05em] sm:text-7xl lg:text-9xl">
+              Access Over Excess
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
+              Quiet luxury. Earned access. Designed for those who understand
+              that influence does not need to announce itself.
+            </p>
+
+            <a
+              href="#collection"
+              className="mt-9 inline-flex min-w-48 justify-center border border-white bg-black/80 px-8 py-4 text-[10px] uppercase tracking-[0.35em] transition hover:bg-white hover:text-black"
+            >
+              Explore
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Collection */}
+      <section id="collection" className="px-4 py-20 sm:px-6 sm:py-28">
+        <div className="mx-auto max-w-[1600px]">
+          <div className="mb-10 flex items-end justify-between border-b border-black/20 pb-5">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-black/50">
+                Spring / Summer 2026
+              </p>
+              <h2 className="mt-3 text-3xl font-medium uppercase tracking-[-0.03em] sm:text-5xl">
+                Featured Collection
+              </h2>
+            </div>
+
+            <p className="hidden text-[10px] uppercase tracking-[0.3em] text-black/50 sm:block">
+              Limited Release
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {featuredItems.map((item) => (
+              <article key={item.name} className="group">
+                <div className="aspect-[4/5] overflow-hidden bg-[#e7e4de]">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
+                  />
+                </div>
+
+                <div className="flex items-start justify-between gap-4 pt-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.18em]">
+                      {item.name}
+                    </p>
+                    <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-black/45">
+                      {item.category}
+                    </p>
+                  </div>
+
+                  <span className="text-sm transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial */}
+      <section className="bg-[#171512] px-4 py-4 text-white sm:px-6">
+        <div className="relative mx-auto min-h-[75vh] max-w-[1600px] overflow-hidden">
+          <img
+            src="/hero.png"
+            alt="AOE editorial campaign"
+            className="absolute inset-0 h-full w-full scale-105 object-cover object-center grayscale"
+          />
+
+          <div className="absolute inset-0 bg-black/45" />
+
+          <div className="relative z-10 flex min-h-[75vh] items-center justify-center px-6 py-20 text-center">
+            <div className="max-w-5xl">
+              <p className="text-[10px] uppercase tracking-[0.5em] text-white/65">
+                The Philosophy
+              </p>
+
+              <h2 className="mt-8 text-4xl font-medium leading-[1.02] tracking-[-0.045em] sm:text-6xl lg:text-8xl">
+                The door was never hidden.
+                <span className="block text-white/55">
+                  You just had to know where to look.
+                </span>
+              </h2>
+
+              <a
+                href="#philosophy"
+                className="mt-10 inline-flex border-b border-white pb-2 text-[10px] uppercase tracking-[0.35em]"
+              >
+                Read the story
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy */}
+      <section
+        id="philosophy"
+        className="bg-[#d9d3c8] px-6 py-24 sm:px-10 sm:py-36 lg:px-16"
+      >
+        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
+          <p className="text-[10px] uppercase tracking-[0.42em] text-black/50">
+            Access Over Excess
+          </p>
+
+          <div>
+            <h2 className="max-w-5xl text-4xl font-medium leading-[1.06] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+              The world celebrates what you own.
+              <span className="block text-black/45">
+                We celebrate where trust can take you.
+              </span>
+            </h2>
+
+            <div className="mt-12 grid gap-8 border-t border-black/20 pt-10 text-base leading-8 text-black/60 sm:grid-cols-2">
+              <p>
+                Access Over Excess is built on a simple belief: relationships,
+                character, contribution, and genuine connection can take you
+                further than material excess ever will.
+              </p>
+
+              <p>
+                Apparel is the symbol. The network is the value. Every piece is
+                designed to represent a philosophy that is lived rather than
+                simply displayed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Network */}
+      <section
+        id="network"
+        className="bg-[#111111] px-6 py-24 text-white sm:px-10 sm:py-32 lg:px-16"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 border-b border-white/15 pb-14 lg:grid-cols-2">
+            <p className="text-[10px] uppercase tracking-[0.42em] text-white/45">
+              The AOE Network
+            </p>
+
+            <div>
+              <h2 className="text-4xl font-medium tracking-[-0.04em] sm:text-6xl">
+                Different roles.
+                <span className="block text-white/40">One philosophy.</span>
+              </h2>
+
+              <p className="mt-8 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
+                AOE is not a ladder to climb. It is an ecosystem of people who
+                participate in different ways while sharing the same belief in
+                meaningful access.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            {networkRoles.map((role) => (
+              <article
+                key={role.title}
+                className="grid gap-5 border-b border-white/15 py-9 transition hover:bg-white/[0.025] sm:grid-cols-[5rem_0.8fr_1.2fr] sm:px-4"
+              >
+                <p className="text-[10px] tracking-[0.3em] text-white/35">
+                  {role.number}
+                </p>
+
+                <h3 className="text-2xl font-medium tracking-[-0.025em]">
+                  {role.title}
+                </h3>
+
+                <p className="max-w-xl text-sm leading-7 text-white/50">
+                  {role.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Closing */}
+      <section
+        id="contact"
+        className="bg-[#f2f0eb] px-6 py-24 sm:px-10 sm:py-36 lg:px-16"
+      >
+        <div className="mx-auto max-w-7xl text-center">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-black/45">
+            Access is earned
+          </p>
+
+          <h2 className="mx-auto mt-8 max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
+            The collection is coming.
+          </h2>
+
+          <p className="mx-auto mt-8 max-w-xl text-base leading-8 text-black/55">
+            Product, partnerships, and experiences are being introduced
+            deliberately. Stay close.
+          </p>
+
+          <a
+            href="mailto:accessoverexcess@gmail.com"
+            className="mt-10 inline-flex min-w-52 justify-center bg-black px-8 py-4 text-[10px] uppercase tracking-[0.35em] text-white transition hover:bg-[#4f493f]"
+          >
+            Stay connected
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-black/15 bg-[#f2f0eb] px-6 py-8 sm:px-10 lg:px-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 text-[9px] uppercase tracking-[0.28em] text-black/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Access Over Excess</p>
+          <p>
+            Access isn&apos;t about getting in. It&apos;s about belonging once
+            you arrive.
+          </p>
+        </div>
+      </footer>
+    </main>
+  );
+}
