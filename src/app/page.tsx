@@ -4,12 +4,8 @@ const products = [
     image: "/hoodie.PNG",
   },
   {
-    name: "Private Jet Hoodie",
-    image: "/hoodie private jet.PNG",
-  },
-  {
-    name: "Short Set",
-    image: "/shortset.PNG",
+    name: "Cream Hoodie",
+    image: "/CreamHoodie.jpg",
   },
 ];
 
@@ -91,7 +87,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2">
             {products.map((product) => (
               <article key={product.name} className="group">
                 <div className="aspect-[4/5] overflow-hidden bg-[#e6e2da]">
