@@ -1,7 +1,7 @@
 const products = [
   {
-    name: "Heavyweight Hoodie",
-    image: "/hoodie.PNG",
+    name: "Private Jet Hoodie",
+    image: "/hoodie private jet.PNG",
   },
   {
     name: "Cream Hoodie",
