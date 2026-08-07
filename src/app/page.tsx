@@ -178,7 +178,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative h-[calc(100vh-92px)] min-h-[650px] overflow-hidden">
         <img
-          src="/GreyAccessHoodie.PNG"
+          src="/GreyAccessHoodie.png"
           alt="AOE Access Over Excess"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
