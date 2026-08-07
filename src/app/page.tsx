@@ -288,21 +288,21 @@ export default function Home() {
         <div id="hoodies" className="grid gap-6 md:grid-cols-3">
 
           <ProductCard
-            image="/Hoodies/CreamMasterKeyHoodie.png"
+            image="/Hoodies/CreamMasterKeyHoodie.PNG"
             number="01"
             category="HEAVYWEIGHT HOODIE"
             title="CREAM KEY"
           />
 
           <ProductCard
-            image="/Hoodies/blackaccesshoodie.png"
+            image="/Hoodies/blackaccesshoodie.PNG"
             number="02"
             category="HEAVYWEIGHT HOODIE"
             title="BLACK KEY"
           />
 
           <ProductCard
-            image="/Hoodies/OliveAccessHoodie.png"
+            image="/Hoodies/OliveAccessHoodie.PNG"
             number="03"
             category="HEAVYWEIGHT HOODIE"
             title="OLIVE KEY"
@@ -318,7 +318,7 @@ export default function Home() {
       <section className="relative flex min-h-[600px] items-center justify-center overflow-hidden bg-black px-8">
 
         <img
-          src="/Logos/keylogo.png"
+          src="/Logos/keylogo.jpg"
           alt="AOE Key"
           className="absolute h-[420px] opacity-[0.06]"
         />
@@ -392,7 +392,7 @@ export default function Home() {
       <section className="relative min-h-[720px] overflow-hidden">
 
         <img
-          src="/AOE MODELS/hoodieprivatejet.png"
+          src="/AOE MODELS/hoodieprivatejet.PNG"
           alt="AOE Private Access"
           className="absolute inset-0 h-full w-full object-cover"
         />
