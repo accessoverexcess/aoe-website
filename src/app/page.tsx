@@ -4,54 +4,218 @@ import { useState } from "react";
 
 export default function Home() {
   const [entered, setEntered] = useState(false);
+  const [unlocking, setUnlocking] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   const toggleMenu = (menu: string) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
 
+  const handleEnter = () => {
+    if (unlocking) return;
+    setUnlocking(true);
+
+    window.setTimeout(() => {
+      setEntered(true);
+      setUnlocking(false);
+    }, 2300);
+  };
+
   return (
     <main className="min-h-screen bg-[#0b0b0a] text-white">
 
       {/* =========================================================
-          ACCESS GATE
+          ACCESS GATE + SIGNATURE UNLOCK ANIMATION
       ========================================================== */}
       {!entered && (
-        <section className="fixed inset-0 z-[100] flex items-center justify-center bg-[#080807]">
-          <div className="mx-auto max-w-[700px] px-8 text-center">
+        <section
+          className={`fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#080807] ${
+            unlocking ? "aoe-gate-exit" : ""
+          }`}
+        >
+          {!unlocking ? (
+            <div className="mx-auto max-w-[700px] px-8 text-center">
 
-            <p className="text-[10px] tracking-[0.5em] text-[#a67c52]">
-              ACCESS OVER EXCESS
-            </p>
+              <p className="text-[10px] tracking-[0.5em] text-[#a67c52]">
+                ACCESS OVER EXCESS
+              </p>
 
-            <div className="mx-auto my-10 flex h-20 w-20 items-center justify-center rounded-full border border-[#a67c52]/50">
-              <span className="font-serif text-4xl text-[#a67c52]">
-                A
-              </span>
+              <div className="mx-auto my-10 flex h-20 w-20 items-center justify-center rounded-full border border-[#a67c52]/50">
+                <span className="font-serif text-4xl text-[#a67c52]">
+                  A
+                </span>
+              </div>
+
+              <h1 className="font-serif text-4xl tracking-[0.04em] md:text-6xl">
+                ACCESS IS EARNED.
+              </h1>
+
+              <p className="mt-7 text-sm leading-7 text-white/50">
+                Excess is what you own.
+                <br />
+                Access is where you can go.
+              </p>
+
+              <button
+                onClick={handleEnter}
+                className="mt-12 border border-[#a67c52] px-12 py-4 text-[10px] tracking-[0.4em] text-[#c69a6d] transition duration-300 hover:bg-[#a67c52] hover:text-black"
+              >
+                ENTER
+              </button>
+
+              <p className="mt-12 text-[8px] tracking-[0.35em] text-white/20">
+                PRIVATE PREVIEW / COLLECTION 001
+              </p>
+
             </div>
+          ) : (
+            <div className="relative flex h-full w-full items-center justify-center">
 
-            <h1 className="font-serif text-4xl tracking-[0.04em] md:text-6xl">
-              ACCESS IS EARNED.
-            </h1>
+              <div className="aoe-unlock-glow absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full" />
 
-            <p className="mt-7 text-sm leading-7 text-white/50">
-              Excess is what you own.
-              <br />
-              Access is where you can go.
-            </p>
+              <div className="relative h-[260px] w-[720px] max-w-[94vw]">
+                <img
+                  src="/Logos/keylogoside.PNG"
+                  alt="AOE key"
+                  className="aoe-unlock-key absolute left-1/2 top-1/2 w-[230px] max-w-[34vw] object-contain"
+                />
 
-            <button
-              onClick={() => setEntered(true)}
-              className="mt-12 border border-[#a67c52] px-12 py-4 text-[10px] tracking-[0.4em] text-[#c69a6d] transition duration-300 hover:bg-[#a67c52] hover:text-black"
-            >
-              ENTER
-            </button>
+                <img
+                  src="/Logos/Lock.jpg"
+                  alt="AOE lock"
+                  className="aoe-unlock-lock absolute left-1/2 top-1/2 w-[105px] max-w-[16vw] object-contain"
+                />
+              </div>
 
-            <p className="mt-12 text-[8px] tracking-[0.35em] text-white/20">
-              PRIVATE PREVIEW / COLLECTION 001
-            </p>
+              <div className="aoe-access-granted absolute bottom-[18%] text-center">
+                <p className="text-[9px] tracking-[0.5em] text-[#b88a5c]">
+                  ACCESS GRANTED
+                </p>
+              </div>
 
-          </div>
+            </div>
+          )}
+
+          <style jsx global>{`
+            @keyframes aoeKeyUnlock {
+              0% {
+                opacity: 0;
+                transform: translate(-560px, -50%) rotate(0deg);
+              }
+              12% { opacity: 1; }
+              38% {
+                opacity: 1;
+                transform: translate(-235px, -50%) rotate(0deg);
+              }
+              54% {
+                transform: translate(-182px, -50%) rotate(0deg);
+              }
+              70% {
+                transform: translate(-182px, -50%) rotate(90deg);
+              }
+              82% {
+                transform: translate(-182px, -50%) rotate(90deg);
+                opacity: 1;
+              }
+              100% {
+                transform: translate(-182px, -50%) rotate(90deg);
+                opacity: 0;
+              }
+            }
+
+            @keyframes aoeLockUnlock {
+              0% {
+                opacity: 0;
+                transform: translate(520px, -50%);
+              }
+              12% { opacity: 1; }
+              38% {
+                opacity: 1;
+                transform: translate(34px, -50%);
+              }
+              82% {
+                opacity: 1;
+                transform: translate(34px, -50%);
+              }
+              100% {
+                opacity: 0;
+                transform: translate(34px, -50%) scale(1.03);
+              }
+            }
+
+            @keyframes aoeUnlockGlow {
+              0%, 56% {
+                opacity: 0;
+                box-shadow: 0 0 0 0 rgba(180, 128, 75, 0);
+              }
+              70% {
+                opacity: 0.9;
+                box-shadow: 0 0 90px 35px rgba(180, 128, 75, 0.42);
+              }
+              100% {
+                opacity: 0;
+                box-shadow: 0 0 150px 70px rgba(180, 128, 75, 0);
+              }
+            }
+
+            @keyframes aoeAccessGranted {
+              0%, 62% { opacity: 0; letter-spacing: 0.75em; }
+              76% { opacity: 1; letter-spacing: 0.5em; }
+              100% { opacity: 0; letter-spacing: 0.5em; }
+            }
+
+            @keyframes aoeGateExit {
+              0%, 82% { opacity: 1; }
+              100% { opacity: 0; }
+            }
+
+            .aoe-unlock-key {
+              transform-origin: 92% 50%;
+              animation: aoeKeyUnlock 2.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+              filter: sepia(0.18) brightness(0.92) contrast(1.08);
+              will-change: transform, opacity;
+            }
+
+            .aoe-unlock-lock {
+              animation: aoeLockUnlock 2.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+              filter: sepia(0.15) brightness(0.9) contrast(1.08);
+              will-change: transform, opacity;
+            }
+
+            .aoe-unlock-glow {
+              background: radial-gradient(circle, rgba(193, 143, 91, 0.3) 0%, rgba(193, 143, 91, 0) 68%);
+              animation: aoeUnlockGlow 2.15s ease-out forwards;
+            }
+
+            .aoe-access-granted {
+              opacity: 0;
+              animation: aoeAccessGranted 2.15s ease-out forwards;
+            }
+
+            .aoe-gate-exit {
+              animation: aoeGateExit 2.3s ease forwards;
+            }
+
+            @media (max-width: 640px) {
+              @keyframes aoeKeyUnlock {
+                0% { opacity: 0; transform: translate(-390px, -50%) rotate(0deg); }
+                12% { opacity: 1; }
+                38% { opacity: 1; transform: translate(-160px, -50%) rotate(0deg); }
+                54% { transform: translate(-118px, -50%) rotate(0deg); }
+                70% { transform: translate(-118px, -50%) rotate(90deg); }
+                82% { transform: translate(-118px, -50%) rotate(90deg); opacity: 1; }
+                100% { transform: translate(-118px, -50%) rotate(90deg); opacity: 0; }
+              }
+
+              @keyframes aoeLockUnlock {
+                0% { opacity: 0; transform: translate(330px, -50%); }
+                12% { opacity: 1; }
+                38% { opacity: 1; transform: translate(22px, -50%); }
+                82% { opacity: 1; transform: translate(22px, -50%); }
+                100% { opacity: 0; transform: translate(22px, -50%) scale(1.03); }
+              }
+            }
+          `}</style>
         </section>
       )}
 
