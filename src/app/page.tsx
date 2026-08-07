@@ -1,208 +1,219 @@
-const products = [
-  {
-    name: "Private Jet Hoodie",
-    image: "/hoodieprivatejet.PNG",
-  },
-  {
-    name: "Cream Hoodie",
-    image: "/CreamHoodie.jpg",
-  },
-];
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+
+  const toggleMenu = (menu: string) => {
+    setOpenMenu(openMenu === menu ? null : menu);
+  };
+
   return (
-    <main className="bg-[#f4f2ed] text-black">
-      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/20 bg-black/85 text-white backdrop-blur-sm">
-        <div className="grid h-16 grid-cols-3 items-center px-5 sm:px-8">
-          <nav className="hidden gap-6 text-[10px] uppercase tracking-[0.24em] md:flex">
-            <a href="#collection">Collection</a>
-            <a href="#story">Story</a>
+    <main className="min-h-screen bg-black text-black">
+      {/* HEADER */}
+      <header className="relative z-50 bg-[#e9e3dc]">
+        <div className="grid h-[92px] grid-cols-3 items-center px-6 md:px-10">
+          {/* LOGO */}
+          <div className="flex flex-col items-start">
+            <div className="font-serif text-[42px] leading-none tracking-[0.08em]">
+              AOE
+            </div>
+
+            <div className="mt-1 text-[10px] tracking-[0.12em]">
+              ACCESS OVER EXCESS
+            </div>
+          </div>
+
+          {/* DESKTOP NAV */}
+          <nav className="hidden items-center justify-center gap-16 md:flex">
+            {/* MENS */}
+            <div className="relative">
+              <button
+                onClick={() => toggleMenu("mens")}
+                className="flex items-center gap-2 text-[16px] font-medium tracking-[0.05em]"
+              >
+                MENS
+                <span>⌄</span>
+              </button>
+
+              {openMenu === "mens" && (
+                <div className="absolute left-1/2 top-[48px] w-[160px] -translate-x-1/2 rounded-b-md bg-[#eee8e2] px-7 py-6 shadow-lg">
+                  <MenuItem label="Hoodies" />
+                  <MenuItem label="Tees" />
+                  <MenuItem label="Sweats" />
+                </div>
+              )}
+            </div>
+
+            {/* KIDS */}
+            <div className="relative">
+              <button
+                onClick={() => toggleMenu("kids")}
+                className="flex items-center gap-2 text-[16px] font-medium tracking-[0.05em]"
+              >
+                KIDS
+                <span>⌄</span>
+              </button>
+
+              {openMenu === "kids" && (
+                <div className="absolute left-1/2 top-[48px] w-[160px] -translate-x-1/2 rounded-b-md bg-[#eee8e2] px-7 py-6 shadow-lg">
+                  <MenuItem label="Hoodies" />
+                  <MenuItem label="Tees" />
+                  <MenuItem label="Sweats" />
+                </div>
+              )}
+            </div>
+
+            {/* ACCESSORIES */}
+            <div className="relative">
+              <button
+                onClick={() => toggleMenu("accessories")}
+                className="flex items-center gap-2 text-[16px] font-medium tracking-[0.05em]"
+              >
+                ACCESSORIES
+                <span>⌄</span>
+              </button>
+
+              {openMenu === "accessories" && (
+                <div className="absolute left-1/2 top-[48px] w-[150px] -translate-x-1/2 rounded-b-md bg-[#eee8e2] px-7 py-6 shadow-lg">
+                  <MenuItem label="Hats" />
+                  <MenuItem label="Socks" />
+                </div>
+              )}
+            </div>
           </nav>
 
-          <a
-            href="#top"
-            className="col-start-2 text-center text-sm font-semibold uppercase tracking-[0.45em]"
-          >
-            AOE
-          </a>
+          {/* ACCOUNT + BAG */}
+          <div className="flex items-center justify-end gap-6">
+            <button
+              aria-label="Account"
+              className="flex h-8 w-8 items-center justify-center"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.4"
+              >
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4.5 21c.5-4.5 3-7 7.5-7s7 2.5 7.5 7" />
+              </svg>
+            </button>
 
-          <nav className="flex justify-end gap-5 text-[10px] uppercase tracking-[0.24em]">
-            <a href="#network" className="hidden sm:block">
-              Network
-            </a>
-            <a href="#contact">Enter</a>
-          </nav>
+            <button
+              aria-label="Shopping Bag"
+              className="flex h-8 w-8 items-center justify-center"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.4"
+              >
+                <path d="M5 8h14l1 13H4L5 8Z" />
+                <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+              </svg>
+            </button>
+          </div>
         </div>
       </header>
 
-      <section
-        id="top"
-        className="relative flex min-h-screen items-end overflow-hidden bg-black"
-      >
+      {/* MOBILE NAV */}
+      <div className="relative z-40 flex justify-center gap-7 bg-[#e9e3dc] pb-4 md:hidden">
+        <button
+          onClick={() => toggleMenu("mens")}
+          className="text-[12px] font-medium tracking-[0.08em]"
+        >
+          MENS
+        </button>
+
+        <button
+          onClick={() => toggleMenu("kids")}
+          className="text-[12px] font-medium tracking-[0.08em]"
+        >
+          KIDS
+        </button>
+
+        <button
+          onClick={() => toggleMenu("accessories")}
+          className="text-[12px] font-medium tracking-[0.08em]"
+        >
+          ACCESSORIES
+        </button>
+      </div>
+
+      {/* MOBILE DROPDOWN */}
+      {openMenu && (
+        <div className="relative z-40 bg-[#eee8e2] px-8 py-5 md:hidden">
+          {openMenu === "mens" && (
+            <>
+              <MenuItem label="Hoodies" />
+              <MenuItem label="Tees" />
+              <MenuItem label="Sweats" />
+            </>
+          )}
+
+          {openMenu === "kids" && (
+            <>
+              <MenuItem label="Hoodies" />
+              <MenuItem label="Tees" />
+              <MenuItem label="Sweats" />
+            </>
+          )}
+
+          {openMenu === "accessories" && (
+            <>
+              <MenuItem label="Hats" />
+              <MenuItem label="Socks" />
+            </>
+          )}
+        </div>
+      )}
+
+      {/* HERO */}
+      <section className="relative h-[calc(100vh-92px)] min-h-[650px] overflow-hidden">
         <img
-          src="/hero.PNG"
-          alt="Access Over Excess campaign"
+          src="/GreyAccessHoodie.PNG"
+          alt="AOE Access Over Excess"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/25" />
+        <div className="absolute inset-0 bg-black/10" />
 
-        <div className="relative z-10 w-full px-6 pb-14 text-center text-white sm:pb-20">
-          <p className="mb-5 text-[10px] uppercase tracking-[0.5em] text-white/75">
-            The First Collection
+        <div className="absolute bottom-10 left-7 text-white md:bottom-14 md:left-12">
+          <p className="mb-3 text-[11px] tracking-[0.35em]">
+            THE FIRST COLLECTION
           </p>
 
-          <h1 className="text-5xl font-medium uppercase leading-[0.9] tracking-[-0.05em] sm:text-7xl lg:text-9xl">
-            Access Over Excess
+          <h1 className="max-w-[470px] font-serif text-4xl leading-[0.95] md:text-6xl">
+            ACCESS OVER EXCESS
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
+          <p className="mt-5 text-sm tracking-[0.08em]">
             Quiet luxury. Earned access.
           </p>
 
-          <a
-            href="#collection"
-            className="mt-9 inline-flex min-w-48 justify-center border border-white bg-black/80 px-8 py-4 text-[10px] uppercase tracking-[0.35em] transition hover:bg-white hover:text-black"
-          >
-            Explore
-          </a>
+          <button className="mt-7 border border-white px-9 py-3 text-[11px] tracking-[0.3em] transition hover:bg-white hover:text-black">
+            EXPLORE
+          </button>
         </div>
       </section>
-
-      <section id="collection" className="px-4 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1600px]">
-          <div className="mb-10 flex items-end justify-between border-b border-black/20 pb-5">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-black/45">
-                Spring / Summer 2026
-              </p>
-
-              <h2 className="mt-3 text-3xl font-medium uppercase tracking-[-0.03em] sm:text-5xl">
-                Featured Collection
-              </h2>
-            </div>
-
-            <p className="hidden text-[10px] uppercase tracking-[0.3em] text-black/45 sm:block">
-              Limited Release
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            {products.map((product) => (
-              <article key={product.name} className="group">
-                <div className="aspect-[4/5] overflow-hidden bg-[#e6e2da]">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="h-full w-full object-contain p-4 transition duration-700 group-hover:scale-[1.025]"
-                  />
-                </div>
-
-                <div className="flex items-center justify-between pt-4">
-                  <p className="text-xs uppercase tracking-[0.18em]">
-                    {product.name}
-                  </p>
-
-                  <span>→</span>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="story"
-        className="bg-[#171512] px-4 py-4 text-white sm:px-6"
-      >
-        <div className="relative mx-auto min-h-[78vh] max-w-[1600px] overflow-hidden">
-          <img
-            src="/image0.png"
-            alt="AOE editorial"
-            className="absolute inset-0 h-full w-full object-cover grayscale"
-          />
-
-          <div className="absolute inset-0 bg-black/45" />
-
-          <div className="relative z-10 flex min-h-[78vh] items-center justify-center px-6 py-20 text-center">
-            <div className="max-w-5xl">
-              <p className="text-[10px] uppercase tracking-[0.5em] text-white/60">
-                The Philosophy
-              </p>
-
-              <h2 className="mt-8 text-4xl font-medium leading-[1.02] tracking-[-0.045em] sm:text-6xl lg:text-8xl">
-                The door was never hidden.
-                <span className="block text-white/50">
-                  You just had to know where to look.
-                </span>
-              </h2>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="network"
-        className="bg-[#111111] px-6 py-24 text-white sm:px-10 sm:py-32 lg:px-16"
-      >
-        <div className="mx-auto max-w-7xl">
-          <p className="text-[10px] uppercase tracking-[0.42em] text-white/40">
-            The AOE Network
-          </p>
-
-          <h2 className="mt-8 text-4xl font-medium tracking-[-0.04em] sm:text-6xl">
-            Different roles.
-            <span className="block text-white/40">One philosophy.</span>
-          </h2>
-
-          <div className="mt-14 border-t border-white/15">
-            {["Community", "Keyholders", "Curators", "Founders Club"].map(
-              (role, index) => (
-                <div
-                  key={role}
-                  className="grid gap-4 border-b border-white/15 py-8 sm:grid-cols-[5rem_1fr]"
-                >
-                  <p className="text-[10px] tracking-[0.3em] text-white/30">
-                    0{index + 1}
-                  </p>
-
-                  <h3 className="text-2xl font-medium">{role}</h3>
-                </div>
-              ),
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="contact"
-        className="px-6 py-24 text-center sm:px-10 sm:py-36"
-      >
-        <p className="text-[10px] uppercase tracking-[0.5em] text-black/40">
-          Access is earned
-        </p>
-
-        <h2 className="mx-auto mt-8 max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
-          The collection is coming.
-        </h2>
-
-        <a
-          href="mailto:accessoverexcess@gmail.com"
-          className="mt-10 inline-flex min-w-52 justify-center bg-black px-8 py-4 text-[10px] uppercase tracking-[0.35em] text-white"
-        >
-          Stay connected
-        </a>
-      </section>
-
-      <footer className="border-t border-black/15 px-6 py-8 text-[9px] uppercase tracking-[0.28em] text-black/45 sm:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:justify-between">
-          <p>© 2026 Access Over Excess</p>
-          <p>
-            Access isn&apos;t about getting in. It&apos;s about belonging once
-            you arrive.
-          </p>
-        </div>
-      </footer>
     </main>
+  );
+}
+
+function MenuItem({ label }: { label: string }) {
+  return (
+    <a
+      href="#"
+      className="mb-5 block text-[15px] tracking-[0.01em] transition hover:opacity-50 last:mb-0"
+    >
+      {label}
+    </a>
   );
 }
